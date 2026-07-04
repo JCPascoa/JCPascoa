@@ -1,0 +1,23 @@
+name: Update ORCID Publications
+on:
+  schedule:
+    - cron: '0 0 * * 0' # Runs every Sunday
+  workflow_dispatch:      # Allows manual trigger
+  push:
+    branches:
+      - main
+
+jobs:
+  update-publications:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Get ORCID publications
+        uses: TheAlbertDev/get-orcid-publications@v0.1.0
+        with:
+          orcidId: "0000-0001-7019-3766"
+
+      # Note: You may need a small script to inject the generated YAML 
+      # into your README.md between the ORCID-START/END markers.
