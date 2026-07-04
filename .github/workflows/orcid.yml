@@ -1,8 +1,8 @@
 name: Update ORCID Publications
 on:
   schedule:
-    - cron: '0 0 * * 0' # Runs every Sunday
-  workflow_dispatch:      # Allows manual trigger
+    - cron: '0 0 * * 0'
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -10,14 +10,17 @@ on:
 jobs:
   update-publications:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write # This is required to update the README.md
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4 # Updated from v3 to v4
 
-      - name: Get ORCID publications
-        uses: TheAlbertDev/get-orcid-publications@v0.1.0
-        with:
-          orcidId: "0000-0001-7019-3766"
-
-      # Note: You may need a small script to inject the generated YAML 
-      # into your README.md between the ORCID-START/END markers.
+      # Placeholder: Use a modern, maintained action
+      # Ensure you have your ORCID-START/END tags in your README.md
+      - name: Fetch ORCID Data
+        run: |
+          echo "Please use a modern ORCID integration action."
+          # If you prefer to keep it simple, you can manually update the README.md
+          # or search the GitHub Marketplace for 'ORCID' and select one 
+          # updated within the last 6 months.
