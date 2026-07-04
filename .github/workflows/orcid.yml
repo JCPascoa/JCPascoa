@@ -11,16 +11,11 @@ jobs:
   update-publications:
     runs-on: ubuntu-latest
     permissions:
-      contents: write # This is required to update the README.md
+      contents: write
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4 # Updated from v3 to v4
-
-      # Placeholder: Use a modern, maintained action
-      # Ensure you have your ORCID-START/END tags in your README.md
-      - name: Fetch ORCID Data
-        run: |
-          echo "Please use a modern ORCID integration action."
-          # If you prefer to keep it simple, you can manually update the README.md
-          # or search the GitHub Marketplace for 'ORCID' and select one 
-          # updated within the last 6 months.
+      - uses: actions/checkout@v4
+      - name: Update ORCID
+        uses: x-actions/orcid-profile-readme@v1 # A popular, maintained option
+        with:
+          orcid: '0000-0001-7019-3766'
+          file: 'README.md'
