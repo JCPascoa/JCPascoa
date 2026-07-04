@@ -1,8 +1,8 @@
 name: Update ORCID Publications
 on:
   schedule:
-    - cron: '0 0 * * 0'
-  workflow_dispatch:
+    - cron: '0 0 * * 0' # Runs every Sunday
+  workflow_dispatch:      # Allows manual trigger
   push:
     branches:
       - main
@@ -13,9 +13,11 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
-      - name: Update ORCID
-        uses: x-actions/orcid-profile-readme@v1 # A popular, maintained option
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Update ORCID Publications
+        uses: jamesgeorge007/github-readme-orcid@v1
         with:
           orcid: '0000-0001-7019-3766'
           file: 'README.md'
